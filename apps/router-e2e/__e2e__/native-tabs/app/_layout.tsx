@@ -3,9 +3,10 @@ import { ThemeProvider, DarkTheme, DefaultTheme } from '@react-navigation/native
 import { VectorIcon } from 'expo-router';
 import { NativeTabs } from 'expo-router/unstable-native-tabs';
 import { useState } from 'react';
-import { Appearance, Platform, useColorScheme } from 'react-native';
+import { Appearance, Platform, Text, useColorScheme, View } from 'react-native';
 
 import { ActiveTabsContext } from '../utils/active-tabs-context';
+import { MiniPlayer } from '../components/mini-player';
 
 if (process.env.EXPO_OS !== 'web') {
   Appearance.setColorScheme('unspecified');
@@ -18,33 +19,33 @@ export default function Layout() {
     <ThemeProvider value={scheme === 'dark' ? DarkTheme : DefaultTheme}>
       <ActiveTabsContext.Provider value={{ activeTabs, setActiveTabs }}>
         <NativeTabs
-        // Both platforms
-        // labelStyle={{
-        //   default: {
-        //     fontSize: 16,
-        //     fontWeight: 700,
-        //     fontStyle: 'italic',
-        //     // fontFamily: 'Courier New',
-        //     color: Platform.OS === 'android' ? '#888' : undefined,
-        //   },
-        //   selected: {
-        //     fontSize: 32,
-        //     color: 'red',
-        //   },
-        // }}
-        // backgroundColor={Platform.OS === 'android' ? 'black' : undefined}
-        // badgeBackgroundColor="green"
-        // tintColor="orange"
-        // iconColor={Platform.OS === 'android' ? '#888' : { selected: 'purple' }}
-        // iOS only
-        // blurEffect="systemChromeMaterial"
-        // minimizeBehavior="onScrollDown"
-        // disableTransparentOnScrollEdge
-        // Android only
-        // labelVisibilityMode="auto"
-        // rippleColor="orange"
-        // indicatorColor="black"
-        // sidebarAdaptable
+          // Both platforms
+          // labelStyle={{
+          //   default: {
+          //     fontSize: 16,
+          //     fontWeight: 700,
+          //     fontStyle: 'italic',
+          //     // fontFamily: 'Courier New',
+          //     color: Platform.OS === 'android' ? '#888' : undefined,
+          //   },
+          //   selected: {
+          //     fontSize: 32,
+          //     color: 'red',
+          //   },
+          // }}
+          // backgroundColor={Platform.OS === 'android' ? 'black' : undefined}
+          // badgeBackgroundColor="green"
+          // tintColor="orange"
+          // iconColor={Platform.OS === 'android' ? '#888' : { selected: 'purple' }}
+          // iOS only
+          // blurEffect="systemChromeMaterial"
+          minimizeBehavior="onScrollDown"
+          // disableTransparentOnScrollEdge
+          // Android only
+          // labelVisibilityMode="auto"
+          // rippleColor="orange"
+          // indicatorColor="black"
+          // sidebarAdaptable
         >
           <NativeTabs.Trigger name="index">
             <NativeTabs.Trigger.Label
@@ -91,6 +92,18 @@ export default function Layout() {
             <NativeTabs.Trigger.Badge>9</NativeTabs.Trigger.Badge>
             <NativeTabs.Trigger.Label>Dynamic</NativeTabs.Trigger.Label>
           </NativeTabs.Trigger>
+          <NativeTabs.BottomAccessory>
+            <MiniPlayer />
+          </NativeTabs.BottomAccessory>
+          <NativeTabs.BottomAccessory forState="inline">
+            <View
+              style={{
+                flex: 1,
+                backgroundColor: 'red',
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}></View>
+          </NativeTabs.BottomAccessory>
         </NativeTabs>
       </ActiveTabsContext.Provider>
     </ThemeProvider>

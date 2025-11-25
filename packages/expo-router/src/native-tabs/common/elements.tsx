@@ -142,3 +142,22 @@ export interface NativeTabsTriggerBadgeProps {
 }
 
 export const NativeTabsTriggerBadge: React.FC<NativeTabsTriggerBadgeProps> = Badge;
+
+export interface NativeTabsBottomAccessoryProps {
+  children?: React.ReactNode;
+  /**
+   * There are two possible states for the bottom accessory: `inline` and `regular`. This props defines, for which state this version of the accessory is rendered.
+   *
+   * If only one version of the accessory is provided, it will be used for both states.
+   *
+   * - In `inline` state, the accessory is displayed inline with the tab bar. This happens when minimizeBehavior is set and content is scrolled.
+   * - In `regular` state, the accessory is displayed above the tab bar.
+   *
+   * @platform iOS 26+
+   */
+  forState?: 'inline' | 'regular';
+}
+
+export const NativeTabsBottomAccessory: React.FC<NativeTabsBottomAccessoryProps> = () => {
+  return null;
+};
